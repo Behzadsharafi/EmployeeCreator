@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import PostList from "./containers/PostList/PostList";
-import { getAllPosts } from "./services/posts";
+import { getAllEmployees } from "./services/employees";
 
 function App() {
   const [posts, setPosts] = useState([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    getAllPosts().then((res) => {
+    getAllEmployees().then((res) => {
       setPosts(res);
       console.log(res);
     });
