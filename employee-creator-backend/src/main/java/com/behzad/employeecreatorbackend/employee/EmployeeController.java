@@ -21,7 +21,7 @@ import com.behzad.employeecreatorbackend.exceptions.NotFoundException;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/employees")
 public class EmployeeController {
 
 	@Autowired

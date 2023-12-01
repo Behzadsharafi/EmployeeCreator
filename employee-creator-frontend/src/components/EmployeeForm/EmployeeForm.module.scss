@@ -1,0 +1,28 @@
+.card {
+  box-shadow: 2px 3px 11px 0px rgba(0, 0, 0, 0.6);
+  padding: 15px;
+  width: 70%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__heading:first-child {
+    margin-bottom: 15px;
+  }
+  &__heading:not(:first-child) {
+    margin: 15px 0;
+  }
+
+  &__radioSection {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+}

@@ -8,4 +8,15 @@ const instance = axios.create({
   headers: { "X-Custom-Header": "foobar" },
 });
 
+// instance.interceptors.response.use(
+//   (response) => response,
+//   (error) => {
+//     if (error.response && error.response.status === 401) {
+//       window.location.href = "/";
+//     } else {
+//       return Promise.reject(error);
+//     }
+//   }
+// );
+
 export default instance;
