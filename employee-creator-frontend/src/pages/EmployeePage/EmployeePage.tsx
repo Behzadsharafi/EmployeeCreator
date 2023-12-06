@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Employee } from "../../scripts/interfaces";
-import { Employees } from "../../services/employee-service";
+// import { Employees } from "../../services/employee-service";
 import styles from "./EmployeePage.module.scss";
 import EmployeeView from "../../components/EmployeeView/EmployeeView";
 import Button from "./../../components/Button/Button";
+import { getEmployeeById } from "../../services/backend-service";
 
 const EmployeePage = () => {
   const { id } = useParams();
@@ -12,11 +13,33 @@ const EmployeePage = () => {
 
   const [employee, setEmployee] = useState<Employee>();
 
+  const [loading, setLoading] = useState(true);
+
+  const [errorMess, setErrorMess] = useState("");
+
+  // useEffect(() => {
+  //   if (id) {
+  //     Employees.find(parseInt(id)).then((data) => {
+  //       setEmployee(data);
+  //     });
+  //   }
+  // }, [id]);
+
   useEffect(() => {
+    setLoading(true);
+    if (errorMess) {
+      setErrorMess("");
+    }
     if (id) {
-      Employees.find(parseInt(id)).then((data) => {
-        setEmployee(data);
-      });
+      getEmployeeById(parseInt(id))
+        .then((employee) => {
+          setEmployee(employee);
+        })
+        .catch((err) => setErrorMess(err.message))
+        .finally(() => setLoading(false));
+    } else {
+      setErrorMess("There is no ID in URL");
+      setLoading(false);
     }
   }, [id]);
 

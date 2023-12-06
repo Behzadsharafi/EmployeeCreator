@@ -3,12 +3,17 @@ import { MouseEventHandler } from "react";
 
 interface Props {
   children: any;
-  className: any;
-  onClick: MouseEventHandler<HTMLButtonElement>;
+  className?: any;
+  type?: "button" | "submit" | "reset";
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
-const Button = ({ children, className, onClick }: Props) => {
+const Button = ({ children, className, onClick, type }: Props) => {
   return (
-    <button onClick={onClick} className={`${styles.button} ${className}`}>
+    <button
+      type={type}
+      onClick={onClick}
+      className={`${styles.button} ${className}`}
+    >
       {children}
     </button>
   );

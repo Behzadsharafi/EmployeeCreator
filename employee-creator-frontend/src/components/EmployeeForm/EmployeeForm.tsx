@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { schema } from "../../scripts/schema";
-import style from "./EmployeeForm.module.scss";
+import styles from "./EmployeeForm.module.scss";
 import {
   CreateEmployeeDTO,
   Employee,
@@ -11,10 +11,15 @@ import {
 import { useState } from "react";
 
 import { useNavigate } from "react-router-dom";
-import { Employees } from "../../services/employee-service";
+// import { Employees } from "../../services/employee-service";
+import Paper from "../Paper/Paper";
+import {
+  createEmployee,
+  updateEmployeeById,
+} from "../../services/backend-service";
+import Button from "../Button/Button";
 
 export interface EmployeeFormProps {
-  // editMode?: boolean;
   employee?: Employee;
 }
 
@@ -55,7 +60,6 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const formSubmit = async (data: FormData) => {
-    // const formattedData = myScripts.convertUndefinedToNull(data);
     const formattedData = { ...data };
     setIsSubmitting(true);
     setErrorMess(errorMess ? "" : errorMess);
@@ -64,14 +68,9 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
     if (!employee) {
       const toCreateData: CreateEmployeeDTO = { ...formattedData };
 
-      // useEffect(() => {
-      //   if (id) {
-      //     Employees.find(parseInt(id)).then((data) => setEmployee(data));
-      //   }
-      // }, [id]);
-
       try {
-        Employees.createEmployee(toCreateData);
+        // await Employees.createEmployee(toCreateData);
+        await createEmployee(toCreateData);
         console.log("New employee created", toCreateData);
         setIsSubmitting(false);
         navigate("/");
@@ -106,8 +105,8 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
       }
 
       try {
-        Employees.updateEmployee(employee.id, toUpdateData);
-        // await updateEmployeeById(employee.id, toUpdateData);
+        // Employees.updateEmployee(employee.id, toUpdateData);
+        await updateEmployeeById(employee.id, toUpdateData);
         console.log(
           Object.keys(toUpdateData).length === 0
             ? `Employee ${employee.id} is unchanged`
@@ -130,11 +129,11 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
   } = useForm({ resolver: yupResolver(schema) });
 
   return (
-    <>
-      <form className={style.form} onSubmit={handleSubmit(formSubmit)}>
+    <Paper className={styles.card}>
+      <form className={styles.form} onSubmit={handleSubmit(formSubmit)}>
         {/* ------- section ------- */}
-        <h3 className={style.form__section}>Personal information</h3>
-        <div className={style.field}>
+        <h3 className={styles.form__section}>Personal information</h3>
+        <div className={styles.field}>
           <label htmlFor="firstName">First name</label>
           <input
             id="firstName"
@@ -144,11 +143,11 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
           />
 
           {errors.firstName && (
-            <p className={style.error}>{errors.firstName.message}</p>
+            <p className={styles.error}>{errors.firstName.message}</p>
           )}
         </div>
 
-        <div className={style.field}>
+        <div className={styles.field}>
           <label htmlFor="middleName">Middle name</label>
           <input
             id="middleName"
@@ -157,10 +156,10 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             defaultValue={getDefaultVal("middleName") as string}
           />
           {errors.middleName && (
-            <p className={style.error}>{errors.middleName.message}</p>
+            <p className={styles.error}>{errors.middleName.message}</p>
           )}
         </div>
-        <div className={style.field}>
+        <div className={styles.field}>
           <label htmlFor="lastName">Last name</label>
           <input
             id="lastName"
@@ -169,13 +168,13 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             defaultValue={getDefaultVal("lastName") as string}
           />
           {errors.lastName && (
-            <p className={style.error}>{errors.lastName.message}</p>
+            <p className={styles.error}>{errors.lastName.message}</p>
           )}
         </div>
 
         {/* ------- section ------- */}
-        <h3 className={style.form__section}>Contact details</h3>
-        <div className={style.field}>
+        <h3 className={styles.form__section}>Contact details</h3>
+        <div className={styles.field}>
           <label htmlFor="email">Email</label>
           <input
             id="email"
@@ -184,11 +183,11 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             defaultValue={getDefaultVal("email") as string}
           />
           {errors.email && (
-            <p className={style.error}>{errors.email.message}</p>
+            <p className={styles.error}>{errors.email.message}</p>
           )}
         </div>
 
-        <div className={style.field}>
+        <div className={styles.field}>
           <label htmlFor="phone">Phone</label>
           <input
             id="phone"
@@ -197,11 +196,11 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             defaultValue={getDefaultVal("phone") as string}
           />
           {errors.phone && (
-            <p className={style.error}>{errors.phone.message}</p>
+            <p className={styles.error}>{errors.phone.message}</p>
           )}
         </div>
 
-        <div className={style.field}>
+        <div className={styles.field}>
           <label htmlFor="address">Address</label>
           <input
             id="address"
@@ -210,16 +209,16 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             defaultValue={getDefaultVal("address") as string}
           />
           {errors.address && (
-            <p className={style.error}>{errors.address.message}</p>
+            <p className={styles.error}>{errors.address.message}</p>
           )}
         </div>
 
         {/* ------- section ------- */}
-        <h3 className={style.form__section}>Employee status</h3>
+        <h3 className={styles.form__section}>Employee status</h3>
 
-        <div className={style.field}>
+        <div className={styles.field}>
           <label>What is contract type</label>
-          <div className={style.radioGroup}>
+          <div className={styles.radioGroup}>
             <label>
               <input
                 type="radio"
@@ -241,11 +240,11 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
           </div>
 
           {errors.contractType && (
-            <p className={style.error}>{errors.contractType.message}</p>
+            <p className={styles.error}>{errors.contractType.message}</p>
           )}
         </div>
 
-        <div className={style.field}>
+        <div className={styles.field}>
           <label htmlFor="startDate">Start Date</label>
           <input
             id="startDate"
@@ -260,11 +259,11 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             }
           />
           {errors.startDate && (
-            <p className={style.error}>{errors.startDate.message}</p>
+            <p className={styles.error}>{errors.startDate.message}</p>
           )}
         </div>
 
-        <div className={style.field}>
+        <div className={styles.field}>
           <label htmlFor="finishDate">Finish Date</label>
           <input
             id="finishDate"
@@ -273,13 +272,13 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             defaultValue={getDefaultVal("finishDate") as string | undefined}
           />
           {errors.finishDate && (
-            <p className={style.error}>{errors.finishDate.message}</p>
+            <p className={styles.error}>{errors.finishDate.message}</p>
           )}
         </div>
 
-        <div className={style.field}>
+        <div className={styles.field}>
           <label>Employment Type</label>
-          <div className={style.radioGroup}>
+          <div className={styles.radioGroup}>
             <label>
               <input
                 type="radio"
@@ -300,11 +299,11 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             </label>
           </div>
           {errors.employmentType && (
-            <p className={style.error}>{errors.employmentType.message}</p>
+            <p className={styles.error}>{errors.employmentType.message}</p>
           )}
         </div>
 
-        <div className={style.field}>
+        <div className={styles.field}>
           <label htmlFor="hoursPerWeek">Hours per week</label>
           <input
             id="hoursPerWeek"
@@ -313,16 +312,16 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             defaultValue={getDefaultVal("hoursPerWeek", 0) as number}
           />
           {errors.hoursPerWeek && (
-            <p className={style.error}>{errors.hoursPerWeek.message}</p>
+            <p className={styles.error}>{errors.hoursPerWeek.message}</p>
           )}
         </div>
-        <div className={style.btn_wrapper}>
-          <button type="submit">Submit</button>
+        <div>
+          <Button type="submit">Submit</Button>
         </div>
       </form>
       {errorMess && <p>{errorMess}</p>}
       {isSubmitting && <p>Submitting....</p>}
-    </>
+    </Paper>
   );
 };
 
