@@ -47,9 +47,17 @@ const EmployeePage = () => {
     <div className={styles.page}>
       <section className={styles.page__topSection}>
         <h2>Employee Details</h2>
-        <Button onClick={() => navigate(`/`)} className={styles.button}>
-          Back
-        </Button>
+        <div className={styles.page__topSection__buttons}>
+          <Button
+            onClick={() => navigate(`/${employee?.id}/edit`)}
+            className={styles.button}
+          >
+            Edit Employee
+          </Button>
+          <Button onClick={() => navigate(`/`)} className={styles.button}>
+            Back
+          </Button>
+        </div>
       </section>
 
       {employee && <EmployeeView employee={employee} />}

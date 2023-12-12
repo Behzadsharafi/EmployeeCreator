@@ -11,25 +11,11 @@ const AddEmployeePage = () => {
   const { id } = useParams();
   const [employee, setEmployee] = useState<Employee>();
   const navigate = useNavigate();
+
   const [loading, setLoading] = useState(true);
 
   const [errorMess, setErrorMess] = useState("");
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   if (errorMess) {
-  //     setErrorMess("");
-  //   }
-  //   if (id) {
-  //     Employees.find(parseInt(id))
-  //       .then((employee) => setEmployee(employee))
-  //       .catch((e) => setErrorMess(e.message))
-  //       .finally(() => setLoading(false));
-  //   } else {
-  //     setErrorMess("There is no ID in URL");
-  //     setLoading(false);
-  //   }
-  // }, [id]);
   useEffect(() => {
     setLoading(true);
     if (errorMess) {
@@ -52,7 +38,7 @@ const AddEmployeePage = () => {
     <div className={styles.page}>
       <section className={styles.page__topSection}>
         <h2>Employee Details</h2>
-        <Button onClick={() => navigate(`/`)} className={styles.button}>
+        <Button onClick={() => navigate(-1)} className={styles.button}>
           Back
         </Button>
       </section>
