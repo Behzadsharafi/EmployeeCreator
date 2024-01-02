@@ -19,6 +19,7 @@ const EmployeeList = () => {
   const [deleteLoading, setDeleteLoading] = useState(false);
 
   useEffect(() => {
+    //Uncomment the following line and save to feed the database
     // people.forEach((person) => createEmployee(person));
     setErrorMess(errorMess ? "" : errorMess);
     setLoading(true);
@@ -57,8 +58,7 @@ const EmployeeList = () => {
 
       // Revert the UI back to its previous state using the saved constant
       setEmployees(currentEmployees);
-    } finally {
-      setDeleteLoading(false);
+      alert("There was a problem in the server. Could not delete.");
     }
   };
 

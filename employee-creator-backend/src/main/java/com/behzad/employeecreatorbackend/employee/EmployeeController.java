@@ -26,82 +26,70 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
-	
-	
-	// ----- GET -----
-	// get all
+
 	@GetMapping
-	public ResponseEntity<List<Employee>> getAll(){
+	public ResponseEntity<List<Employee>> getAll() {
 		List<Employee> allEmployees = this.employeeService.findAll();
 		return new ResponseEntity<>(allEmployees, HttpStatus.OK);
 	}
-	
-	// get by id
+
 	@GetMapping("/{id}")
-	public ResponseEntity<Employee> getById(@PathVariable Long id){
+	public ResponseEntity<Employee> getById(@PathVariable Long id) {
 		Optional<Employee> foundEmployee = this.employeeService.findById(id);
-		
+
 		if (foundEmployee.isEmpty()) {
 			throw new NotFoundException(String.format("Employee with id %s not found", id));
 		}
 		return new ResponseEntity<>(foundEmployee.get(), HttpStatus.OK);
 	}
-	
-	
-	// ----- POST -----	
+
 	@PostMapping
-	public ResponseEntity <Employee> createEmployee(@Valid @RequestBody CreateEmployeeDTO data){
-		
-		String enteredEmail = data.getEmail();
+	public ResponseEntity<Employee> createEmployee(@Valid @RequestBody CreateEmployeeDTO data) {
+
 		String enteredPhone = data.getPhone();
-		
-		boolean isExistedPhone = this.employeeService.isExistedPhone(enteredPhone);
-		boolean isExistedEmail = this.employeeService.isExistedEmail(enteredEmail);
-		
-		if(isExistedPhone && isExistedEmail) {
-			throw new DataIntegrityViolationException("Employee with phone " + enteredPhone + " and email " + enteredEmail + " already exists.");
-		} 
-		else if (isExistedPhone) {
+		String enteredEmail = data.getEmail();
+
+		boolean phoneExists = this.employeeService.phoneAlreadyExists(enteredPhone);
+		boolean emailExists = this.employeeService.emailAlreadyExits(enteredEmail);
+
+		if (phoneExists && emailExists) {
+			throw new DataIntegrityViolationException(
+					"Employee with phone " + enteredPhone + " and email " + enteredEmail + " already exists.");
+		} else if (phoneExists) {
 			throw new DataIntegrityViolationException("Employee with phone " + enteredPhone + " already exists.");
-		
-		}
-		else if (isExistedEmail) {
+
+		} else if (emailExists) {
 			throw new DataIntegrityViolationException("Employee with email " + enteredEmail + " already exists.");
-		
+
 		}
-		
+
 		Employee createdEmployee = this.employeeService.create(data);
 
 		return new ResponseEntity<>(createdEmployee, HttpStatus.CREATED);
 	}
-	
-	// ----- DELETE -----	
+
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Employee> deleteById(@PathVariable Long id){
-		boolean isEmployeeDeleted = this.employeeService.deleteById(id);
-		
-		if (!isEmployeeDeleted) {
-			throw new NotFoundException(String.format("Employee with id %s not found, could not be deleted", id));
+	public ResponseEntity<Employee> deleteById(@PathVariable Long id) {
+		boolean deleted = this.employeeService.deleteById(id);
+
+
+		if(deleted == true) {
+			return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
 		}
 		
-		return new ResponseEntity<>(null, HttpStatus.NO_CONTENT);
+		throw new NotFoundException(String
+				.format("Employee with id: %d does not exist, could not delete", id));
 	}
-	
-	// ----- PATCH -----	
+
 	@PatchMapping("/{id}")
-	public ResponseEntity<Employee> updateById(@PathVariable Long id, @Valid @RequestBody UpdateEmployeeDTO data){
-		
-		Optional<Employee> maybeEmployeeUpdated = this.employeeService.updateById(id, data);
-		if(maybeEmployeeUpdated.isEmpty()) {
-			throw new NotFoundException(String.format("Employee with id %s not found, could not be updated", id));
+	public ResponseEntity<Employee> updateById(@PathVariable Long id, @Valid @RequestBody UpdateEmployeeDTO data) {
+
+		Optional<Employee> updated = this.employeeService.updateById(id, data);
+		if (updated.isEmpty()) {
+			throw new NotFoundException(String.format("Employee with id %s not found, could not update", id));
 		}
-		
-		return new ResponseEntity<Employee>(maybeEmployeeUpdated.get(), HttpStatus.OK);
+
+		return new ResponseEntity<Employee>(updated.get(), HttpStatus.OK);
 	}
-	
-	// ----- TEST connection -----
-	@GetMapping("/test")
-	public String test(){
-		return "Connection is good";
-	}
+
 }

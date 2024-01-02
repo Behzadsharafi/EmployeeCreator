@@ -24,34 +24,34 @@ export interface EmployeeFormProps {
 }
 
 interface FormData extends yup.InferType<typeof schema> {
-  employmentType: "Full-Time" | "Part-Time";
-  contractType: "Permanent" | "Contract";
+  // employmentType: "Full-Time" | "Part-Time";
+  // contractType: "Permanent" | "Contract";
 }
 
 const EmployeeForm: React.FC<EmployeeFormProps> = ({
   employee,
 }: EmployeeFormProps) => {
-  const getDefaultVal = (
+  const getDefaultValue = (
     fieldName: keyof UpdateEmployeeDTO | keyof CreateEmployeeDTO,
     manualDefault: string | number | null | undefined = undefined
   ) => {
     if (employee) {
-      const val = employee[fieldName];
-      if (val === null) return null;
-      else if (typeof val === typeof new Date()) {
-        return (val as Date).toISOString().split("T")[0];
+      const value = employee[fieldName];
+      if (value === null) return null;
+      else if (typeof value === typeof new Date()) {
+        return (value as Date).toISOString().split("T")[0];
       }
-      return val;
+      return value;
     } else return manualDefault;
   };
 
   const getDefaultCheck = (
     fieldName: "employmentType" | "contractType",
-    valToCheck:
+    valueToCheck:
       | UpdateEmployeeDTO["employmentType"]
       | UpdateEmployeeDTO["contractType"]
   ): boolean => {
-    return getDefaultVal(fieldName) === valToCheck ? true : false;
+    return getDefaultValue(fieldName) === valueToCheck ? true : false;
   };
 
   const navigate = useNavigate();
@@ -139,7 +139,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             id="firstName"
             type="text"
             {...register("firstName")}
-            defaultValue={getDefaultVal("firstName") as string}
+            defaultValue={getDefaultValue("firstName") as string}
           />
 
           {errors.firstName && (
@@ -153,7 +153,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             id="middleName"
             type="text"
             {...register("middleName")}
-            defaultValue={getDefaultVal("middleName") as string}
+            defaultValue={getDefaultValue("middleName") as string}
           />
           {errors.middleName && (
             <p className={styles.error}>{errors.middleName.message}</p>
@@ -165,14 +165,13 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             id="lastName"
             type="text"
             {...register("lastName")}
-            defaultValue={getDefaultVal("lastName") as string}
+            defaultValue={getDefaultValue("lastName") as string}
           />
           {errors.lastName && (
             <p className={styles.error}>{errors.lastName.message}</p>
           )}
         </div>
 
-        {/* ------- section ------- */}
         <h3 className={styles.form__section}>Contact details</h3>
         <div className={styles.field}>
           <label htmlFor="email">Email</label>
@@ -180,7 +179,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             id="email"
             type="email"
             {...register("email")}
-            defaultValue={getDefaultVal("email") as string}
+            defaultValue={getDefaultValue("email") as string}
           />
           {errors.email && (
             <p className={styles.error}>{errors.email.message}</p>
@@ -193,7 +192,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             id="phone"
             type="phone"
             {...register("phone")}
-            defaultValue={getDefaultVal("phone") as string}
+            defaultValue={getDefaultValue("phone") as string}
           />
           {errors.phone && (
             <p className={styles.error}>{errors.phone.message}</p>
@@ -206,14 +205,13 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             id="address"
             type="address"
             {...register("address")}
-            defaultValue={getDefaultVal("address") as string}
+            defaultValue={getDefaultValue("address") as string}
           />
           {errors.address && (
             <p className={styles.error}>{errors.address.message}</p>
           )}
         </div>
 
-        {/* ------- section ------- */}
         <h3 className={styles.form__section}>Employee status</h3>
 
         <div className={styles.field}>
@@ -252,7 +250,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             // defaultValue={new Date().toISOString().split("T")[0]}
             {...register("startDate")}
             defaultValue={
-              getDefaultVal(
+              getDefaultValue(
                 "startDate",
                 new Date().toISOString().split("T")[0]
               ) as string
@@ -269,7 +267,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             id="finishDate"
             type="date"
             {...register("finishDate")}
-            defaultValue={getDefaultVal("finishDate") as string | undefined}
+            defaultValue={getDefaultValue("finishDate") as string | undefined}
           />
           {errors.finishDate && (
             <p className={styles.error}>{errors.finishDate.message}</p>
@@ -309,7 +307,7 @@ const EmployeeForm: React.FC<EmployeeFormProps> = ({
             id="hoursPerWeek"
             type="number"
             {...register("hoursPerWeek")}
-            defaultValue={getDefaultVal("hoursPerWeek", 0) as number}
+            defaultValue={getDefaultValue("hoursPerWeek", 0) as number}
           />
           {errors.hoursPerWeek && (
             <p className={styles.error}>{errors.hoursPerWeek.message}</p>

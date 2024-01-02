@@ -6,128 +6,64 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
+import lombok.Getter;
+import lombok.Setter;
 
 public class UpdateEmployeeDTO {
-	@Pattern(regexp = "^(?=\\S).*$", message="Content cannot be an empty string") // should not content only white space
+	
+	@Getter
+	@Setter
+	@Pattern(regexp = "^(?=\\S).*$", message = "First name cannot be empty")
 	String firstName;
-	
-	@Pattern(regexp = "^(?=\\S).*$", message="Content cannot be an empty string") // should not content only white space
+
+	@Getter
+	@Setter
+	@Pattern(regexp = "^(?=\\S).*$", message = "Middle name cannot be empty")
 	String middleName;
-	
-	@Pattern(regexp = "^(?=\\S).*$", message="Content cannot be an empty string") // should not content only white space
+
+	@Getter
+	@Setter
+	@Pattern(regexp = "^(?=\\S).*$", message = "Last name cannot be empty")
 	String lastName;
-	
-	@Pattern(regexp = "^(?=\\S).*$", message="Content cannot be an empty string") // should not content only white space
+
+	@Getter
+	@Setter
+	@Pattern(regexp = "^(?=\\S).*$", message = "Email cannot be empty")
 	String email;
-	
-	@Pattern(regexp = "^(?=\\S).*$", message="Content cannot be an empty string") // should not content only white space
+
+	@Getter
+	@Setter
+	@Pattern(regexp = "^(?=\\S).*$", message = "Phone cannot be empty")
 	String phone;
-	
-	@Pattern(regexp = "^(?=\\S).*$", message="Content cannot be an empty string") // should not content only white space
+
+	@Getter
+	@Setter
+	@Pattern(regexp = "^(?=\\S).*$", message = "Address cannot be empty")
 	String address;
 
-	@Pattern(regexp = "^(?=\\S).*$", message="Content cannot be an empty string") // should not content only white space
+	@Getter
+	@Setter
+	@Pattern(regexp = "^(?=\\S).*$", message = "Contract type cannot be empty")
 	String contractType;
-	
+
+	@Getter
+	@Setter
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	LocalDate startDate;
-	
+
+	@Getter
+	@Setter
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	LocalDate finishDate;
-	
-	@Pattern(regexp = "^(?=\\S).*$", message="Content cannot be an empty string") // should not content only white space
+
+	@Getter
+	@Setter
+	@Pattern(regexp = "^(?=\\S).*$", message = "Employment type cannot be empty")
 	String employmentType;
-	
+
+	@Getter
+	@Setter
 	@Positive
 	Float hoursPerWeek;
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getMiddleName() {
-		return middleName;
-	}
-
-	public void setMiddleName(String middleName) {
-		this.middleName = middleName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public String getContractType() {
-		return contractType;
-	}
-
-	public void setContractType(String contractType) {
-		this.contractType = contractType;
-	}
-
-	public LocalDate getStartDate() {
-		return startDate;
-	}
-
-	public void setStartDate(LocalDate startDate) {
-		this.startDate = startDate;
-	}
-
-	public LocalDate getFinishDate() {
-		return finishDate;
-	}
-
-	public void setFinishDate(LocalDate finishDate) {
-		this.finishDate = finishDate;
-	}
-
-	public String getEmploymentType() {
-		return employmentType;
-	}
-
-	public void setEmploymentType(String employmentType) {
-		this.employmentType = employmentType;
-	}
-
-	public Float getHoursPerWeek() {
-		return hoursPerWeek;
-	}
-
-	public void setHoursPerWeek(Float hoursPerWeek) {
-		this.hoursPerWeek = hoursPerWeek;
-	}
-	
-	
 }
