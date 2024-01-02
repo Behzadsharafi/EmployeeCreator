@@ -46,9 +46,7 @@ Clone the project
 
 To run the backend open the project in a Java IDE like eclipse and run the APP.java
 
-Run the front end
-
-Go to the frontend directory
+Run the front end go to the frontend directory
 
 ```bash
   cd EmployeeCreator/Employee-Creator-Frontend
