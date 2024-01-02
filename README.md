@@ -24,7 +24,7 @@
 
 ### :camera: Quick Demo
 
-<div align="center"> <a href="#"><img src="/src/assets/demo.gif" alt='demo' width='800'/></a> </div>
+<div align="center"> <a href="#"><img src="employee-creator-frontend/src/assets/demo.gif" alt='demo' width='800'/></a> </div>
 
 ### :dart: Features
 
