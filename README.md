@@ -1,3 +1,6 @@
+[![Tests Passing](https://github.com/Behzadsharafi/EmployeeCreator/actions/workflows/test.yml/badge.svg)](https://github.com/Behzadsharafi/EmployeeCreator/actions/workflows/Test.yml)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/Behzadsharafi/EmployeeCreator/blob/main/LICENSE)
+
 <div align='center'>
 
 <h1> :woman_office_worker: Employee Management System :man_office_worker: </h1>
