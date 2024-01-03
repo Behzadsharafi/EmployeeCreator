@@ -91,7 +91,6 @@ Please read the [Code of Conduct](https://github.com/Behzadsharafi/EmployeeCreat
 
 - [React](https://react.dev/): frontend
 - [TypeScripttypescript](https://www.typescriptlang.org/): frontend
-- [Vitest](https://vitest.dev/): frontend testing
 - [SASS](https://sass-lang.com/): styling
 - [MySQL](https://www.mysql.com/): database
 - [Java](https://www.java.com/en/): backend
