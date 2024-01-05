@@ -2,10 +2,8 @@ import { useEffect, useState } from "react";
 import styles from "./EmployeeList.module.scss";
 // import { Employees } from "../../services/employee-service";
 import EmployeeCard from "../EmployeeCard/EmployeeCard";
-import { people } from "../../services/db-seeder";
 import { Employee } from "./../../scripts/interfaces";
 import {
-  createEmployee,
   deleteEmployeeById,
   getAllEmployee,
 } from "../../services/backend-service";
@@ -16,7 +14,6 @@ const EmployeeList = () => {
   const [errorMess, setErrorMess] = useState("");
 
   const [deleteErrorMess, setDeleteErrorMess] = useState("");
-  const [deleteLoading, setDeleteLoading] = useState(false);
 
   useEffect(() => {
     //Uncomment the following line and save to feed the database

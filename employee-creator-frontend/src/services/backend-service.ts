@@ -5,7 +5,7 @@ import {
 } from "../scripts/interfaces";
 import myScripts from "../scripts/scripts";
 
-const hostDomain = `http://localhost:8080/`;
+const hostDomain = `https://zademployee.store/`;
 // localhost = `http://localhost:8080/`
 // hostDomain = `http://52.64.173.231:8080/`;
 

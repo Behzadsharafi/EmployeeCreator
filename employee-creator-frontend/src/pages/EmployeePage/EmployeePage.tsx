@@ -13,20 +13,11 @@ const EmployeePage = () => {
 
   const [employee, setEmployee] = useState<Employee>();
 
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
 
   const [errorMess, setErrorMess] = useState("");
 
-  // useEffect(() => {
-  //   if (id) {
-  //     Employees.find(parseInt(id)).then((data) => {
-  //       setEmployee(data);
-  //     });
-  //   }
-  // }, [id]);
-
   useEffect(() => {
-    setLoading(true);
     if (errorMess) {
       setErrorMess("");
     }
@@ -35,11 +26,9 @@ const EmployeePage = () => {
         .then((employee) => {
           setEmployee(employee);
         })
-        .catch((err) => setErrorMess(err.message))
-        .finally(() => setLoading(false));
+        .catch((err) => setErrorMess(err.message));
     } else {
       setErrorMess("There is no ID in URL");
-      setLoading(false);
     }
   }, [id]);
 
