@@ -1,0 +1,20 @@
+@use "../../partials/palette.scss";
+
+.container {
+  display: flex;
+  border-bottom: 1px solid black;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: palette.$black;
+}
+
+.content {
+  display: flex;
+  width: 70%;
+  color: white;
+
+  &__title {
+    font-size: 1.7rem;
+  }
+}
