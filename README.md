@@ -6,7 +6,7 @@
 <h1> :woman_office_worker: Employee Management System :man_office_worker: </h1>
 <p>An employee management system written in Java Spring and MySQL database for the backend, and React TypeScript for the frontend. This web app allows the user to create, read, update, and delete employee details using standard CRUD operations.</p>
 
-<h4>  <a href="https://github.com/Behzadsharafi/EmployeeCreator/issues"> Report a Bug </a> <span> · </span> <a href="https://github.com/Behzadsharafi/EmployeeCreator/issues"> Request a Feature </a> </h4>
+<h4><a href="https://zademployee.netlify.app/">View Live Site</a> <span> ·  <a href="https://github.com/Behzadsharafi/EmployeeCreator/issues"> Report a Bug </a> <span> · </span> <a href="https://github.com/Behzadsharafi/EmployeeCreator/issues"> Request a Feature </a> </h4>
 
 </div>
 
