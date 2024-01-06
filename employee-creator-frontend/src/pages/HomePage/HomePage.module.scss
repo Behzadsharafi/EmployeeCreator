@@ -1,4 +1,6 @@
-@use "../../partials/palette.scss";
+@use "../../partials/palette";
+@use "../../partials/mixins";
+@use "../../partials/breakpoints";
 
 .page {
   display: flex;
@@ -6,29 +8,32 @@
   align-items: center;
   gap: 10px;
   width: 100%;
+  @include mixins.phone {
+    gap: 20px;
+  }
 
   &__topSection {
     display: flex;
     justify-content: space-between;
     width: 70%;
     max-width: 800px;
-  }
 
-  &__addButton {
-    padding: 3px 50px;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    border: 1px solid grey;
-    cursor: pointer;
-    background-color: palette.$yellow;
-    transition: background-color 0.3s;
+    &__button {
+      @include mixins.tablet {
+        padding: 3px 3vw;
+      }
+    }
+    @include mixins.tablet {
+      width: 90%;
+    }
 
-    &:hover {
-      background-color: palette.$yellow2;
-      transform: scale(0.99);
+    @include mixins.phone {
+      flex-direction: column;
+      gap: 10px;
+
+      &__button {
+        width: 220px;
+      }
     }
   }
 }

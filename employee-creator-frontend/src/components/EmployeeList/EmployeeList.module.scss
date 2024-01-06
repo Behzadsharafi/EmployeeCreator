@@ -1,7 +1,15 @@
+@use "../../partials/palette";
+@use "../../partials/mixins";
+@use "../../partials/breakpoints";
+
 .list {
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 70%;
   max-width: 800px;
+
+  @include mixins.tablet {
+    width: 90%;
+  }
 }

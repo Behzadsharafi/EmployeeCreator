@@ -1,3 +1,6 @@
+@use "../../partials/palette";
+@use "../../partials/mixins";
+
 .card {
   box-shadow: 2px 3px 11px 0px rgba(0, 0, 0, 0.6);
   padding: 15px;
@@ -7,10 +10,18 @@
   flex-direction: column;
   gap: 20px;
 
+  @include mixins.tablet {
+    width: 90%;
+  }
+
   &__item {
     display: flex;
     gap: 40px;
     color: grey;
+
+    @include mixins.phone {
+      gap: 10px;
+    }
     &__label {
       font-weight: bold;
       color: black;

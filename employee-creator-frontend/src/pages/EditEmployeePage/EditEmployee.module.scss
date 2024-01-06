@@ -1,3 +1,6 @@
+@use "../../partials/palette";
+@use "../../partials/mixins";
+
 .page {
   display: flex;
   flex-direction: column;
@@ -10,5 +13,18 @@
     justify-content: space-between;
     width: 70%;
     max-width: 800px;
+
+    @include mixins.tablet {
+      width: 90%;
+    }
+
+    @include mixins.phone_sm {
+      flex-direction: column;
+      gap: 10px;
+
+      &__button {
+        width: fit-content;
+      }
+    }
   }
 }

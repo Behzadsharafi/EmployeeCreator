@@ -38,7 +38,10 @@ const AddEmployeePage = () => {
     <div className={styles.page}>
       <section className={styles.page__topSection}>
         <h2>Employee Details</h2>
-        <Button onClick={() => navigate(-1)} className={styles.button}>
+        <Button
+          onClick={() => navigate(-1)}
+          className={styles.page__topSection__button}
+        >
           Back
         </Button>
       </section>

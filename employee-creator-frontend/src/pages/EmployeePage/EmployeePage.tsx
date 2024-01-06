@@ -39,11 +39,14 @@ const EmployeePage = () => {
         <div className={styles.page__topSection__buttons}>
           <Button
             onClick={() => navigate(`/${employee?.id}/edit`)}
-            className={styles.button}
+            className={styles.page__topSection__buttons__button}
           >
             Edit Employee
           </Button>
-          <Button onClick={() => navigate(`/`)} className={styles.button}>
+          <Button
+            onClick={() => navigate(`/`)}
+            className={styles.page__topSection__buttons__button}
+          >
             Back
           </Button>
         </div>

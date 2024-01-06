@@ -10,7 +10,10 @@ const HomePage = () => {
     <div className={styles.page}>
       <section className={styles.page__topSection}>
         <h2>Employees' List</h2>
-        <Button onClick={() => navigate(`/add`)} className={styles.button}>
+        <Button
+          onClick={() => navigate(`/add`)}
+          className={styles.page__topSection__button}
+        >
           Add New Employee
         </Button>
       </section>
